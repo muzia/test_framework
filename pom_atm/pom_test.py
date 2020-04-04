@@ -31,6 +31,7 @@ class WoniuSalesTest:
 
     def test_sell(self):
         self.sell.do_buy_goods('6955203659750','78')
+        self.sell.do_sell('15981218050','1.8')
 
 if __name__ == '__main__':
    wst =  WoniuSalesTest()

@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-# @Time : 2020/4/3 10:19 
+# @Time : 2020/4/3 10:19
 # @Author : lifei
 #@desc:
 import time
-from selenium import webdriver
-from pom_atm.common import Common
-class SellPOM:
-    # def __init__(self,driver):
-    #     self.driver = driver
+
+from atm.common.utility import Utility
+
+
+class SellObject:
     def __init__(self):
-        self.driver = Common.get_webdriver()
-        print('销售模块的Common地址：%d' % id(Common))
+        self.driver = Utility.get_webdriver()
 
     def get_barcode(self):
 
@@ -29,9 +28,10 @@ class SellPOM:
         return self.driver.find_element_by_id('customerphone')
 
     def get_customer_querry_button(self):
-        return self.driver.find_elements_by_css_selector('.col-lg-6 > .btn-primary')
+        return self.driver.find_element_by_css_selector('.col-lg-6 > .btn-primary')
 
     def get_credit_ratio(self):
+        self.driver.find_element_by_id('creditratio').clear()
         return self.driver.find_element_by_id('creditratio')
 
     def get_submit_button(self):
@@ -54,3 +54,4 @@ class SellPOM:
         time.sleep(2)
         self.driver.switch_to_alert().accept()
         time.sleep(2)
+
