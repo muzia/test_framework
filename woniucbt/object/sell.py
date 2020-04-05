@@ -4,7 +4,7 @@
 #@desc:
 import time
 
-from atm.common.utility import Utility
+from woniucbt.common.utility import Utility
 
 
 class SellObject:

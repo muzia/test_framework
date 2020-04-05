@@ -5,10 +5,14 @@
 # @desc:
 import random
 
-from atm.common.utility import Utility
+from woniucbt.common.utility import Utility
 class CustomerTest:
     def __init__(self):
         pass
+
+    def main_test(self):
+        self.test_add_customer()
+        self.test_edit_customer()
 
     def test_add_customer(self):
         list = self.read_customer_data()
@@ -17,8 +21,8 @@ class CustomerTest:
                     'childsex':item['childsex'],'childdate':item['childdate'],
                     'creditkids':item['creditkids'],'creditcloth':item['creditcloth']}
             resp = Utility.get_session().post('http://127.0.0.1:8080/WoniuSales-20180508-V1.4-bin/customer/add', data=data)
-            print('test_add_customer 参数',data)
-            Utility.assert_result('新增会员',item['expectresult'],resp.text)
+            # print('test_add_customer 参数',data)
+            self.write_result('新增会员',item['expectresult'],resp.text)
 
     def test_edit_customer(self):
         rand_phone = random.randrange(10000000,99999999)
@@ -27,7 +31,11 @@ class CustomerTest:
                                   '&creditkids=500&creditcloth=516750' % rand_phone)
         resp = Utility.get_session().\
             post('http://127.0.0.1:8080/WoniuSales-20180508-V1.4-bin/customer/edit',data)
-        Utility.assert_result('修改会员','edit-successful',resp.text)
+        self.write_result('修改会员','edit-successful',resp.text)
+
+    def write_result(self,case,expect,actual):
+        Utility.assert_result('会员管理','接口测试',case,expect,actual)
+
 
     def read_customer_data(self):
         path = '../data/customer.csv'

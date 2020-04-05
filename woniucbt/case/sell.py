@@ -2,13 +2,17 @@
 # @Time : 2020/4/4 17:36 
 # @Author : lifei
 # @desc:
-from atm.object.sell import SellObject
+from woniucbt.common.utility import Utility
+from woniucbt.object.sell import SellObject
 import random
-from atm.common.database import DataBase
+from woniucbt.common.database import DataBase
 class SellTest:
     def __init__(self):
         self.sell_object = SellObject()
         self.database = DataBase()
+        
+    def main_test(self):
+        self.test_sell()
 
     def test_sell(self):
         # 从csv文件中随机读取一个条码
@@ -21,9 +25,9 @@ class SellTest:
         #销售完后进行断言,直接从数据库中取值
         sql = "SELECT barcode FROM sell WHERE barcode = '{}' ORDER BY sellid DESC LIMIT 0,1".format(barcode)
         if self.database.querry_one(sql) is None:
-            print('销售失败')
+            Utility.assert_result_2('销售出库模块','GUI测试','扫码功能测试','失败')
         else:
-            print('销售成功')
+            Utility.assert_result_2('销售出库模块','GUI测试','扫码功能测试','成功')
 
     def read_sell_barcode(self):
         barcode_list = []

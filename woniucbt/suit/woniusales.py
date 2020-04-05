@@ -1,0 +1,23 @@
+#!/usr/bin/env python
+# @Time : 2020/4/4 20:23 
+# @Author : lifei
+# @desc:
+from woniucbt.case.login import LoginTest
+from woniucbt.case.sell import SellTest
+from woniucbt.case.customer import CustomerTest
+from woniucbt.common.utility import Utility
+if __name__ == '__main__':
+    # login_test = LoginTest()
+    # login_test.test_login_gui()
+    # login_test.test_login_http()
+    #
+    # SellTest().test_sell()
+    # customer_test = CustomerTest()
+    # customer_test.test_add_customer()
+    # customer_test.test_edit_customer()
+
+    # 在不同的模块的case里边实现高内聚,在suit层调用模块级用例实现低耦合
+    Utility.version = '2.2.3'
+    LoginTest().main_test()
+    SellTest().main_test()
+    CustomerTest().main_test()
