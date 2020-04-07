@@ -5,6 +5,7 @@
 from selenium import webdriver
 import time, requests, os
 from woniucbt.common.reporter import Reporter
+from configparser import ConfigParser
 
 class Utility:
     driver = None
@@ -73,5 +74,13 @@ class Utility:
             value = item.split('=')[1]
             dict[key] = value
         return dict
+
+    @classmethod
+    def get_config_value(cls,section,key):
+        conf = ConfigParser()
+        conf.read('../data/woniusales.conf') #读取当前目录下的配置文件
+        return  conf.get(section,key)
+
+
 if __name__ == '__main__':
     Utility.assert_result('登录','GUI','成功登录','1','2')

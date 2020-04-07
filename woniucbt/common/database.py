@@ -4,9 +4,10 @@
 # @desc: 数据库的操作
 import pymysql
 from pymysql.cursors import SSDictCursor
+from woniucbt.common.utility import Utility as util
 class DataBase:
     def __init__(self):
-        self.conn = pymysql.connect('localhost','root','123456','woniusales',charset='utf8')
+        self.conn = pymysql.connect(util.get_config_value('db','host'),util.get_config_value('db','user'),util.get_config_value('db','pass'),util.get_config_value('db','dbname'),charset='utf8')
         self.cursor = self.conn.cursor(cursor=SSDictCursor)
 
     def querry_all(self,sql):

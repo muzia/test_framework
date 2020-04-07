@@ -82,7 +82,7 @@ class Reporter:
         return filename
 
 if __name__ == '__main__':
-    Reporter(). generate_report( '2.2.8')
+    Reporter(). generate_report('2.2.8')
     # Reporter().write_report('2.1.2', '登录', 'GUI测试','测试登录功能','成功','无')
 
 

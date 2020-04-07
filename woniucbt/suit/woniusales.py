@@ -19,7 +19,7 @@ class WOniuSalesSuit:
         # customer_test.test_edit_customer()
 
         # 在不同的模块的case里边实现高内聚,在suit层调用模块级用例实现低耦合
-        Utility.version = '2.2.8'
+        Utility.version = Utility.get_config_value('ci','version')
         LoginTest().main_test()
         SellTest().main_test()
         CustomerTest().main_test()
