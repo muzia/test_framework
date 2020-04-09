@@ -98,8 +98,8 @@ class WoniuSaleCI:
 
     # 发送邮件
     def email(self, body, attach):
-        sender = 'XXX'  # 发送邮箱
-        receivers = 'XXXX'  # 接收邮箱
+        sender = '****@163.com'  # 发送邮箱
+        receivers = '****@qq.com'  # 接收邮箱
         # 三个参数:第一个为文本内容，第二个plain 设置文本格式，第三个utf-8_ 设置编码
         # message = MIMEText('<p style="color: red; font-size: 30px">这是一 封来自Python发送的测试邮件的
         # message[ 'Subject'] = Header( '- -封Python发送的邮件’， 'utf-8')
@@ -110,12 +110,12 @@ class WoniuSaleCI:
         content = MIMEText(body, 'html', 'utf-8')
         msg.attach(content)
         attachment = MIMEApplication(open(attach, 'rb').read())
-        attachment.add_header('Content-Disposition', 'attachment', filename='report.txt')
+        attachment.add_header('Content-Disposition', 'attachment', filename='report.rar')
         msg.attach(attachment)
         try:
             smtpObj = smtplib.SMTP()
-            smtpObj.connect('XXX', '25')
-            smtpObj.login(user='XXX', password='XXX')
+            smtpObj.connect('smtp.163.com', '25')
+            smtpObj.login(user=sender, password='*****')
             smtpObj.sendmail(sender, receivers, str(msg))
             smtpObj.quit()
             print("邮件发送成功")
@@ -125,4 +125,5 @@ class WoniuSaleCI:
 
 if __name__ == '__main__':
     ci = WoniuSaleCI()
-    ci.email('<font color="red">你好啊</font>', r'C:\Users\Administrator\Desktop\test.txt')
+    ci.report()
+    # ci.email('<font color="red">测试报告</font>', ci.ci_folder+'/report.rar')
